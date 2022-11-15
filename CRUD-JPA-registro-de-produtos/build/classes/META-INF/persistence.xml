@@ -4,6 +4,9 @@
 	
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		
+		<class>modelo.Produto</class>
+		<class>modelo.Item</class>
+		
 		<properties>
 		
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
