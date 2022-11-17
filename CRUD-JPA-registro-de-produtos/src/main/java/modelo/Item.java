@@ -29,9 +29,10 @@ public class Item {
 		
 	}
 	
-	public Item(Produto produto, Integer quantidade) {
+	public Item(Produto produto, Integer quantidade, String codigo) {
 		this.produto = produto;
 		this.quantidade = quantidade;
+		this.codigo = codigo;
 	}
 
 	public Long getId() {
@@ -54,6 +55,13 @@ public class Item {
 		this.quantidade = quantidade;
 	}
 	
+	public String getCodigo() {
+		return codigo;
+	}
+	
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
+	}
 	
 	public double obterValorTotal() {
 		return produto.getPreco() * quantidade;
