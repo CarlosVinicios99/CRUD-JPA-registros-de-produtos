@@ -20,6 +20,8 @@ public class Item {
 	@JoinColumn(name = "id_assento")
 	private Produto produto;
 	
+	private String codigo;
+	
 	private Integer quantidade;
 	
 	
