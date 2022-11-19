@@ -43,7 +43,7 @@ public class DAO<E> {
 	
 	public void inserir(E entidade){
 		abrirTransacao();
-		inserir(entidade);
+		em.persist(entidade);
 		fecharTransacao();
 	}
 	
@@ -53,9 +53,11 @@ public class DAO<E> {
 	}
 	
 	public void alterar(E entidade) {
-		abrirTransacao();
-		em.merge(entidade);
-		fecharTransacao();
+		if(entidade != null) {
+			abrirTransacao();
+			em.merge(entidade);
+			fecharTransacao();
+		}
 	}
 	
 	public void remover(E entidade) {

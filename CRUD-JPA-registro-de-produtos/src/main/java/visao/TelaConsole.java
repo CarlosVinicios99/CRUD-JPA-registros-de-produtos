@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import modelo.Item;
 import modelo.Produto;
+import repositorio.Consultas;
 import repositorio.DAO;
 
 public class TelaConsole {
@@ -22,7 +23,7 @@ public class TelaConsole {
 		while(opcaoEscolhida != 7) {	
 			System.out.println("(1)Inserir Produto\n(2)Buscar Produto");
 			System.out.println("(3)Atualizar Produto\n(4)Excluir Produto");
-			System.out.println("(5)Inserir Item\n(6)Excluir Item\nSair");
+			System.out.println("(5)Inserir Item\n(6)Excluir Item\n(7)Sair");
 			
 			opcaoEscolhida = Integer.parseInt(entrada.nextLine());
 			realizarOpcaoEscolhida(opcaoEscolhida);
@@ -53,17 +54,41 @@ public class TelaConsole {
 			case 2:
 				System.out.print("Digite o codigo: ");
 				codigo = entrada.nextLine();
-				//chamar a classe de consulta
+				Produto produto = Consultas.buscarProduto(codigo);
+				
+				if(produto != null) {
+					System.out.println(produto);
+				}
+				
+				else {
+					System.out.println("Produto Nao cadastrado!");
+				}
+				
 				break;
 				
-			case 3:
-				System.out.print("Digite o novo nome: ");
-				nome = entrada.nextLine();
-
-				System.out.print("Digite o novo preco R$: ");
-				preco = Double.parseDouble(entrada.nextLine());
+			case 3:		
+				System.out.print("Digite o codigo: ");
+				codigo = entrada.nextLine();
 				
-				//chamar funcao de consulta e alterar
+				produto = Consultas.buscarProduto(codigo);
+				
+				if(produto != null) {
+					System.out.print("Digite o novo nome: ");
+					nome = entrada.nextLine();
+
+					System.out.print("Digite o novo preco R$: ");
+					preco = Double.parseDouble(entrada.nextLine());
+					
+					produto.setNome(nome);		
+					produto.setPreco(preco);
+					
+					daoProduto.alterar(produto);
+				}
+				
+				else {
+					System.out.println("Produto Nao cadastrado!");
+				}
+			
 				break;
 				
 			case 4:
@@ -104,3 +129,4 @@ public class TelaConsole {
 		}	
 	}
 }
+ 

@@ -61,7 +61,7 @@ public class Produto {
 	
 	@Override
 	public String toString() {
-		return "ID: " + id + " Nome: " + nome + " Preco: R$" + String.format(".2f", preco);
+		return "ID: " + id + " Nome: " + nome + " Preco: R$" + String.format("%.2f", preco);
 	}
 	
 }
