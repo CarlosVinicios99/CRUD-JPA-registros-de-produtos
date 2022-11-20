@@ -26,12 +26,12 @@ public class Consultas {
 		query.setParameter(1, codigo);
 		List<Produto> produtos = query.getResultList();
 		
-		if(produtos == null) {
-			return null;
+		if(produtos.size() > 0) {
+			return produtos.get(0);
 		}
 		
 		else {
-			return produtos.get(0);
+			return null;
 		}
 	}
 	

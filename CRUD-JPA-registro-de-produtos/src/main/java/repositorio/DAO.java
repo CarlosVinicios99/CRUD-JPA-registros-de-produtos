@@ -67,7 +67,7 @@ public class DAO<E> {
 	public void remover(E entidade) {
 		if(entidade != null) {
 			abrirTransacao();
-			em.remove(entidade);
+			em.remove(em.contains(entidade) ? entidade : em.merge(entidade));
 			fecharTransacao();
 		}
 	}

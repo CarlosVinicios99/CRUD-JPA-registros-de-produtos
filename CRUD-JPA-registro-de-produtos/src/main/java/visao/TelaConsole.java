@@ -59,6 +59,7 @@ public class TelaConsole {
 				Produto produto = Consultas.buscarProduto(codigo);
 				
 				if(produto != null) {
+					daoProduto.limparContextoTransacional(produto);
 					System.out.println(produto);
 				}
 				
@@ -75,6 +76,7 @@ public class TelaConsole {
 				produto = Consultas.buscarProduto(codigo);
 				
 				if(produto != null) {
+					daoProduto.limparContextoTransacional(produto);
 					System.out.print("Digite o novo nome: ");
 					nome = entrada.nextLine();
 
@@ -98,7 +100,6 @@ public class TelaConsole {
 				codigo = entrada.nextLine();
 				
 				produto = Consultas.buscarProduto(codigo);
-				daoProduto.limparContextoTransacional(produto);
 				
 				if(produto != null) {
 					daoProduto.remover(produto);
