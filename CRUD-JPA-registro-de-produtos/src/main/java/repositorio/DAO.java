@@ -41,6 +41,10 @@ public class DAO<E> {
 		em.close();
 	}
 	
+	public void limparContextoTransacional(E entidade) {
+		em.detach(entidade);
+	}
+	
 	public void inserir(E entidade){
 		abrirTransacao();
 		em.persist(entidade);
@@ -63,7 +67,7 @@ public class DAO<E> {
 	public void remover(E entidade) {
 		if(entidade != null) {
 			abrirTransacao();
-			inserir(entidade);
+			em.remove(entidade);
 			fecharTransacao();
 		}
 	}

@@ -10,7 +10,9 @@ import repositorio.DAO;
 public class TelaConsole {
 	
 	private Scanner entrada = new Scanner(System.in);
+	@SuppressWarnings({"unchecked", "rawtypes"})
 	private DAO<Produto> daoProduto = new DAO(Produto.class);
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private DAO<Item> daoItem = new DAO(Item.class);
 	
 	public TelaConsole() {
@@ -94,7 +96,17 @@ public class TelaConsole {
 			case 4:
 				System.out.print("Digite o codigo: ");
 				codigo = entrada.nextLine();
-				//chamar funcao de consulta e excluir
+				
+				produto = Consultas.buscarProduto(codigo);
+				daoProduto.limparContextoTransacional(produto);
+				
+				if(produto != null) {
+					daoProduto.remover(produto);
+				}
+				else {
+					System.out.println("Produto Nao cadastrado!");
+				}
+				
 				break;
 				
 			case 5:
@@ -107,7 +119,16 @@ public class TelaConsole {
 				System.out.print("Digite a quantidade: ");
 				Integer quantidade = Integer.parseInt(entrada.nextLine());
 				
-				//chamar a funcao para consultar o produto e inserir item
+				produto = Consultas.buscarProduto(codigoProduto);
+				
+				if(produto != null) {
+					Item item = new Item(produto, quantidade, codigo);
+					daoItem.inserir(item);
+				}
+				
+				else {
+					System.out.println("Produto nao cadastrado!");
+				}
 				
 				break;
 				
@@ -115,8 +136,16 @@ public class TelaConsole {
 				System.out.print("Digite o codigo do item: ");
 				codigo = entrada.nextLine();
 				
-				//chamar a funcao para consultar e excluir o Item
+				Item item = Consultas.buscarItem(codigo);
+				daoItem.limparContextoTransacional(item);
 				
+				if(item != null) {
+					daoItem.remover(item);
+				}
+				else {
+					System.out.println("Produto Nao cadastrado!");
+				}
+					
 				break;
 				
 			case 7:

@@ -17,7 +17,7 @@ public class Item {
 	private Long id;
 	
 	@OneToOne
-	@JoinColumn(name = "id_assento")
+	@JoinColumn(name = "id_produto")
 	private Produto produto;
 	
 	private String codigo;
